@@ -32,4 +32,25 @@ const fetchMyIP = function(callback) {
   });
 };
 
-module.exports = { fetchMyIP };
+const fetchCoordsByIP = function(ip, callback) {
+  request(`http://ipwho.is/${ip}`, (error, response, body) => {
+    // error can be set if invalid domain, user is offline, etc.
+    if (error) {
+      return callback(error, null);
+    }
+
+    const parsedBody = JSON.parse(body);
+
+    if (!parsedBody.success) {
+      const errMsg = `Success status was ${parsedBody.success}. Server message says: ${parsedBody.message} when fetching for IP ${parsedBody.ip}`;
+      callback(Error(errMsg), null);
+      return;
+    }
+
+    const lat = parsedBody.latitude;
+    const long = parsedBody.longitude;
+    return callback(null, { latitude: lat.toString(), longitude: long.toString() });
+  });
+};
+
+module.exports = { fetchCoordsByIP };
