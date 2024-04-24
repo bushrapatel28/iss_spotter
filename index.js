@@ -18,11 +18,11 @@ const { fetchISSFlyOverTimes } = require('./iss');
 //   console.log("It worked! Returned coordinates:", data);
 // });
 
-fetchISSFlyOverTimes({ latitude: '43.653226', longitude: '-79.3831843' }, (error, passInfo) => {
-  if (error) {
-    console.log("It didn't work!", error);
-    return;
-  }
+// fetchISSFlyOverTimes({ latitude: '43.653226', longitude: '-79.3831843' }, (error, passInfo) => {
+//   if (error) {
+//     console.log("It didn't work!", error);
+//     return;
+//   }
 
-  console.log("It worked! Returned flyover times:", passInfo);
-});
+//   console.log("It worked! Returned flyover times:", passInfo);
+// });
